@@ -33,7 +33,7 @@ DELETE FROM DEPT WHERE DEPTNO = 20 ;
 - **Supprimer tous les employées du département numéro 20 qui n'ont pas encore une COMM :**  
 
 ```sh
-DELETE FROM EMP WHERE DEPTNO = 20 and COMM IS NULL; ;
+DELETE FROM EMP WHERE DEPTNO = 20 and COMM IS NULL ;
 ```
 
 - **Supprimer tous les départements réstants :**  
