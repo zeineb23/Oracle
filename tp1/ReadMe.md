@@ -25,7 +25,7 @@ et qui concerne principalement les droits, les autorisations et autres contrôle
 
 ### Excercice 1:
 
-- **Supprimer le départemet numéro 20 :**  
+- **Supprimer le département numéro 20 :**  
 
 ```sh
 DELETE FROM DEPT WHERE DEPTNO = 20 ;
@@ -176,11 +176,15 @@ Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7934','M
 C'est une séquence d’opérations de lecture ou de mise à jour sur une base de données, 
 se terminant par l’une des deux instructions suivantes : **Commit / Rollback**.
 
-![Image 1](images/1.png)
+<div style="text-align:center">
+	<img src="images/1.png" alt="picture" style = "width:550px;border-style: double" />
+</div>
 
 ## Propriétés des transactions
 
-![Image 2](images/2.png)
+<div style="text-align:center">
+	<img src="images/2.png" alt="picture" style = "width:350px;border-style: double" />
+</div>
 
 - **Atomicité** : soit tous les éléments sont validés, soit aucun ne l'est. La transaction se fait donc entièrement ou pas du tout.
 - **Cohérence** : une transaction crée un état des données nouveau et valide, soit, en cas de panne, elle rétablit toutes les données dans l'état qui était le leur avant le début de la transaction.
