@@ -1,6 +1,6 @@
 # TP1
 
-Vous trouverez dans ce [lien]() la présentation utilisée dans ce TP.
+Vous trouverez dans ce [lien](https://docs.google.com/presentation/d/17mNawMoimOkQGlgf80ufQrt7cmB-98Wb9shJreG6bKw/edit?usp=sharing) la présentation utilisée dans ce TP.
 
 ## SGBD ?
 
