@@ -40,7 +40,7 @@ Et enfin, cliquez sur "installer" pour démarrer l'installation :
 Une fois l'installation terminée, vous trouverez le raccourci sur votre bureau : 
 
 <p align="center">
-  <img width="400" src="images/6.PNG" alt="picture">
+  <img width="300" src="images/6.PNG" alt="picture">
 </p>
 
 ## Exécution d'Oracle
