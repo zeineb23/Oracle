@@ -48,7 +48,7 @@ Une fois l'installation terminée, vous trouverez le raccourci sur votre bureau 
 Lorsque vous double cliquez sur l'icône d'Oracle, vous serez redirigé vers une page web :
 
 <p align="center">
-  <img width="500" src="images/7.PNG" alt="picture">
+  <img width="800" src="images/7.PNG" alt="picture">
 </p>
 
 Par la suite, cliquez sur **"Application Express"**, vous serez amené à vous authentifier.
@@ -74,19 +74,19 @@ et cliquez sur le lien présent dans la notification :
 Vous serez amené à saisir les coordonnées saisies auparavant : 
 
 <p align="center">
-  <img width="800" src="images/1.PNG" alt="picture">
+  <img width="800" src="images/11.PNG" alt="picture">
 </p>
 
 Une fois authentifié, vous serez redirigé vers la page principale de votre workspace : 
 
 <p align="center">
-  <img width="800" src="images/1.PNG" alt="picture">
+  <img width="800" src="images/12.PNG" alt="picture">
 </p>
 
 Puis cliquez sur **"SQL workshop"**, pour passer vers l'invite de commande d'Oracle : 
 
 <p align="center">
-  <img width="800" src="images/1.PNG" alt="picture">
+  <img width="800" src="images/13.PNG" alt="picture">
 </p>
 
 Bravo !!
