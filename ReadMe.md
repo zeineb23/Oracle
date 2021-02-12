@@ -17,7 +17,7 @@ Ensuite, cliquez sur "Next" :
 
 <p align="center">
   <img width="700" src="images/2.PNG" alt="picture">
-</p>>
+</p>
 
 Puis, acceptez le contrat de licence :
 
