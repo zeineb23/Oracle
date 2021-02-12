@@ -9,8 +9,10 @@ Vous trouverez dans ce [lien](https://drive.google.com/file/d/11LkeSwxDTBx0Dhn9n
 
 Une fois le fichier téléchargé, décompressez le et double cliquez sur "setup" : 
 
-<p style="text-align:center">
-	<img src="images/1.PNG" alt="picture" style = "width:450px;border-style: double" />
+<p align="center">
+
+  <img width="450" src="images/1.PNG" alt="picture">
+
 </p>
 
 Ensuite, cliquez sur "Next" :
