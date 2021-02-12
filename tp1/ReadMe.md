@@ -177,13 +177,13 @@ C'est une séquence d’opérations de lecture ou de mise à jour sur une base d
 se terminant par l’une des deux instructions suivantes : **Commit / Rollback**.
 
 <p align="center">
-  <img width="800" src="images/1.PNG" alt="picture">
+  <img width="800" src="images/1.png" alt="picture">
 </p>
 
 ## Propriétés des transactions
 
 <p align="center">
-  <img width="300" src="images/2.PNG" alt="picture">
+  <img width="300" src="images/2.png" alt="picture">
 </p>
 
 - **Atomicité** : soit tous les éléments sont validés, soit aucun ne l'est. La transaction se fait donc entièrement ou pas du tout.
