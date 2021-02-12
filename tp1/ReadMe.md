@@ -183,7 +183,7 @@ se terminant par l’une des deux instructions suivantes : **Commit / Rollback**
 ## Propriétés des transactions
 
 <p align="center">
-  <img width="300" src="images/2.png" alt="picture">
+  <img width="400" src="images/2.png" alt="picture" >
 </p>
 
 - **Atomicité** : soit tous les éléments sont validés, soit aucun ne l'est. La transaction se fait donc entièrement ou pas du tout.
