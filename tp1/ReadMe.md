@@ -1,6 +1,6 @@
 # TP1
 
-Vous trouverez dans ce [lien]() la présentation utilisée dans ce TP.
+Vous trouverez dans ce [lien](https://docs.google.com/presentation/d/17mNawMoimOkQGlgf80ufQrt7cmB-98Wb9shJreG6bKw/edit?usp=sharing) la présentation utilisée dans ce TP.
 
 ## SGBD ?
 
@@ -25,7 +25,7 @@ et qui concerne principalement les droits, les autorisations et autres contrôle
 
 ### Excercice 1:
 
-- **Supprimer le départemet numéro 20 :**  
+- **Supprimer le département numéro 20 :**  
 
 ```sh
 DELETE FROM DEPT WHERE DEPTNO = 20 ;
@@ -175,11 +175,15 @@ commit;
 C'est une séquence d’opérations de lecture ou de mise à jour sur une base de données, 
 se terminant par l’une des deux instructions suivantes : **Commit / Rollback**.
 
-![Image 1](images/1.png)
+<p align="center">
+  <img width="800" src="images/1.png" alt="picture">
+</p>
 
 ## Propriétés des transactions
 
-![Image 2](images/2.png)
+<p align="center">
+  <img width="400" src="images/2.png" alt="picture" >
+</p>
 
 - **Atomicité** : soit tous les éléments sont validés, soit aucun ne l'est. La transaction se fait donc entièrement ou pas du tout.
 - **Cohérence** : une transaction crée un état des données nouveau et valide, soit, en cas de panne, elle rétablit toutes les données dans l'état qui était le leur avant le début de la transaction.
