@@ -209,8 +209,6 @@ DEPT_Sal_SUM number (30,2) ;
 
 begin 
 
-Delete from EMP;
-
 SELECT SUM(SAL) into DEPT_Sal_SUM FROM EMP WHERE DEPTNO=10 ;
 DBMS_OUTPUT.PUT_LINE(' masse salariale initiale before updating Mohamed  du dept 10 =' || DEPT_Sal_SUM );
 
