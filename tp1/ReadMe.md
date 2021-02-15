@@ -150,9 +150,9 @@ Update DEPT SET DNAME = 'RESEARCH' WHERE DEPTNO = 20 ;
 - **Populer la TABLE des employées avec des lignes de données:**  
 
 ```sh
-Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7839','KING','PRESIDENT',null,to_date('17/11/81','DD/MM/RR'),'5000',null,'10');
-Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7698','BLAKE','MANAGER','7839',to_date('01/05/81','DD/MM/RR'),'2850',null,'30');
-Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7782','CLARK','MANAGER','7839',to_date('09/06/81','DD/MM/RR'),'2450',null,'10');
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7839','Mohamed','PLEASE',null,to_date('17/11/81','DD/MM/RR'),'2000',null,'10');
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7698','Hichem','CRAFTSMAN','7839',to_date('01/05/81','DD/MM/RR'),'2800',null,'10');
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7782','CLARK','MANAGER','7839',to_date('09/06/81','DD/MM/RR'),'2000',null,'10');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7566','JONES','MANAGER','7839',to_date('02/04/81','DD/MM/RR'),'2975',null,'20');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7788','SCOTT','ANALYST','7566',to_date('09/12/82','DD/MM/RR'),'3000',null,'20');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7902','FORD','ANALYST','7566',to_date('03/12/81','DD/MM/RR'),'3000',null,'20');
@@ -161,11 +161,10 @@ Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7499','A
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7521','WARD','SALESMAN','7698',to_date('22/02/81','DD/MM/RR'),'1250','500','30');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7654','MARTIN','SALESMAN','7698',to_date('28/09/81','DD/MM/RR'),'1250','1400','30');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7844','TURNER','SALESMAN','7698',to_date('08/09/81','DD/MM/RR'),'1500','0','30');
-Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7876','ADAMS','CLERK','7788',to_date('12/01/83','DD/MM/RR'),'1100',null,'20');
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7876','ADAMS','CLERK','7788',to_date('12/01/83','DD/MM/RR'),'1000',null,'20');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7900','JAMES','CLERK','7698',to_date('03/12/81','DD/MM/RR'),'950',null,'30');
 Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('7934','MILLER','CLERK','7782',to_date('23/01/82','DD/MM/RR'),'1300',null,'10');
-
-
+commit;
 ```
 
 
@@ -188,3 +187,54 @@ se terminant par l’une des deux instructions suivantes : **Commit / Rollback**
 - **Durabilité** : les données validées sont enregistrées par le système de sorte que, même en cas de panne et de redémarrage du système, ces données restent disponibles dans leur état correct. 
 
 
+
+
+
+
+### Excercice 2:
+
+- Préparez un bloc anonyme PL/SQL permettant de changer le salaire de l'employé Mohamed de 2000 à 3000. Créer un SAVEPOINT après ce changement. Par la suite, augmenter le salaire d'Hichem et recalculer la masse salariale (ne doit pas dépasser les 10 000) du département N°10 (celui d'Hichem et Mohamed) et appliquer les mesures nécessaires pour ne pas sauvegarder les changements qu'après la vérification que la masse est inférieure ou égale à 10000 avant de persister les changements d'une manière permanente.    
+
+
+- **Code PL/SQL:**  
+
+```sh
+SET SERVEROUTPUT ON ;
+declare 
+DEPT_Sal_SUM number (30,2) ;
+
+begin 
+
+Delete from EMP;
+
+SELECT SUM(SAL) into DEPT_Sal_SUM FROM EMP WHERE DEPTNO=10 ;
+DBMS_OUTPUT.PUT_LINE(' masse salariale initiale before updating Mohamed  du dept 10 =' || DEPT_Sal_SUM );
+
+Update EMP SET SAL = '3000' WHERE ENAME = 'Mohamed' ;
+SAVEPOINT after_updating_mohamed ;
+SELECT SUM(SAL) into DEPT_Sal_SUM FROM EMP WHERE DEPTNO=10 ;
+
+DBMS_OUTPUT.PUT_LINE(' masse salariale initiale before updating Hichem  du dept 10 =' || DEPT_Sal_SUM );
+DBMS_OUTPUT.PUT_LINE('');
+
+
+ WHILE DEPT_Sal_SUM <= 10000 LOOP
+  SAVEPOINT before_updating_hichem ;
+
+  Update EMP SET SAL = SAL + 100 WHERE ENAME = 'Hichem' ;
+  SELECT SUM(SAL) into DEPT_Sal_SUM FROM EMP WHERE DEPTNO = 10 ;
+  DBMS_OUTPUT.PUT_LINE(' masse salariale intermediaire du dept 10 =' || DEPT_Sal_SUM );
+ END LOOP;
+  
+ IF DEPT_Sal_SUM > 10000 THEN
+   ROLLBACK TO SAVEPOINT before_updating_hichem ;
+   SELECT SUM(SAL) into DEPT_Sal_SUM FROM EMP WHERE DEPTNO = 10 ;
+   DBMS_OUTPUT.PUT_LINE(' masse salariale finale du dept 10  =' || DEPT_Sal_SUM );
+ END IF;
+
+
+COMMIT;
+
+END;
+/
+```
