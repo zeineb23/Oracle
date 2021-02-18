@@ -7,7 +7,7 @@ Vous trouverez dans ce [lien](https://docs.google.com/presentation/d/1f5uyqowZ7u
 Après avoir présenté les transactions de façon générale, nous allons présenter dans ce chapitre la gestion de la conccurence entre les transactions.
 
 <p align="center">
-  <img width="600" src="images/1.gif" alt="picture">
+  <img width="650" src="images/1.gif" alt="picture">
 </p>
 
 Tout d'abord nous présenterons les anomalies causées par cette concurrence puis nous présenterons les différents types d'isolation pour y remédier.
@@ -32,7 +32,7 @@ Ensuite chacune va réserver un nombre de place.
 Une va réserver **2 places** et l'autre **4 places** .
 Après que ces transactions soient exécutées, le nombre de place restant est de **6** hors que ca devrait être **4 places**.
 
-####Demo
+#### Demo
 
 ### 2/ Lectures non répétables
 
@@ -48,7 +48,7 @@ Nous continuons avec le même exemple précédent :
 Lorsqu'une transaction consulte le nombre de place disponible et qu'entre temps une autre transaction réserve **2 places**.
 Tandis qu'après un traitement, la première transaction consulte à nouveau le nombre de place celui-ci s'avère modifié.
 
-####Demo
+#### Demo
 
 ### 3/ Lectures sales
 
@@ -71,6 +71,8 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 <p align="center">
   <img width="600" src="images/5.png" alt="picture">
 </p>
+
+#### Demo
 
 ## Concurrence : Niveaux d'isolation des transactions
 
