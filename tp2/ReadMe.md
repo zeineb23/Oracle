@@ -75,7 +75,7 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 #### Demo
 
 | Timing | Session N° 1  | Session N° 2 |Résultat | 
-| :----: | :---- |:----|:----:|
+| :----: | :----: |:----:|:----:|
 | t0| ``` SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem');``` |||
 | t1 | ``` UPDATE EMP SET SAL = 4000 WHERE ENAME ='Hichem'; ``` |------|------|
 | t2 | ------ |```SET TRANSACTION ISOLATION LEVEL READ COMMITTED;```|------|
@@ -115,12 +115,12 @@ Autrement dit, le développeur déclare qu’une lecture va être suivie d’une
 
 ## Conclusion
 
-- Comprendre et utiliser correctement les niveaux d’isolation est impératif pour les applications transactionnelles
+- Comprendre et utiliser correctement les niveaux d’isola-tion est impératif pour les applications transactionnelles
 
-- Savoir repérer les transactions dans une application. Elle doivent respecter la cohérence applicative (le système ne peut pas la deviner pour vous)
+- Savoir repérer les transactions dans une application. Elle doivent respecter lacohérence applicative(le système ne peut pas la deviner pour vous)
 
-- La clause ***FOR UPDATE*** est en théorie meilleure, mais repose sur le facteur humain
+- La clausefor updateest en théorie meilleure, mais repose sur le facteur humain
 
-- Savoir qu’en mode **Serializable**, on risque des rejets de transactions
+- Savoir qu’en mode sérialisable on risque des rejets
 
 - Comprendre les risques dans les autres modes.
