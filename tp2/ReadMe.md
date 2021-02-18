@@ -115,7 +115,7 @@ Autrement dit, le développeur déclare qu’une lecture va être suivie d’une
 
 ## Conclusion
 
-- Comprendre et utiliser correctement les niveaux d’isola-tion est impératif pour les applications transactionnelles
+- Comprendre et utiliser correctement les niveaux d’isolation est impératif pour les applications transactionnelles
 
 - Savoir repérer les transactions dans une application. Elle doivent respecter lacohérence applicative(le système ne peut pas la deviner pour vous)
 
