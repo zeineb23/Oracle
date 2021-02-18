@@ -48,7 +48,6 @@ Nous continuons avec le même exemple précédent :
 Lorsqu'une transaction consulte le nombre de place disponible et qu'entre temps une autre transaction réserve **2 places**.
 Tandis qu'après un traitement, la première transaction consulte à nouveau le nombre de place celui-ci s'avère modifié.
 
-#### Demo
 
 ### 3/ Lectures sales
 
@@ -73,6 +72,7 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 </p>
 
 #### Demo
+### Demo Niveau d'isolation  READ COMMITTED 
 
 | Timing | Session N° 1  | Session N° 2 |Résultat | 
 | :----: | :----: |:----:|:----:|
@@ -90,7 +90,17 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 | t11| ```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|------|
 
 
+### Demo Interblocages :
 
+| Timing | Session N° 1 (User1)   | Session N° 2 (User2) |Résultat | 
+| :----: | :----: |:----:|:----:|
+| t0| ``` SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem');``` |||
+| t1 | ``` UPDATE EMP SET SAL = 4000 WHERE ENAME ='Hichem'; ``` |------|------|
+| t2 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
+| t3 | ```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
+| t4 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Hichem';```|La session 1 va detecter l'interblocage |
+| t6 | ------ |```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|
+| t7 | ```Commit;``` |------|Session 2: --> 1 row updated.|
 ## Concurrence : Niveaux d'isolation des transactions
 
 Plus le niveau est permissif, plus l’exécution est fluide, plus les anomalies sont possibles.
@@ -112,6 +122,7 @@ C'est pourquoi Oracle munit les développeurs de la clause ***FOR UPDATE***.
 Autrement dit, le développeur déclare qu’une lecture va être suivie d’une mise à jour et le système pose un verrou fort pour celle-là, pas de verrou pour les autres et ainsi ca permet de monter le niveau de blocage uniquement quand c’est nécessaire... mais ca repose sur le facteur humain qui n'est pas assez fiable.
 
 #### Demo
+
 
 ## Conclusion
 
