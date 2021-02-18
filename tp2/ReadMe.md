@@ -90,20 +90,6 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 | t11| ```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|------|
 
 
-<style>
-table th:first-of-type {
-    width: 5%;
-}
-table th:nth-of-type(2) {
-    width: 30%;
-}
-table th:nth-of-type(3) {
-    width: 30%;
-}
-table th:nth-of-type(4) {
-    width: 25%;
-}
-</style>
 
 ## Concurrence : Niveaux d'isolation des transactions
 
