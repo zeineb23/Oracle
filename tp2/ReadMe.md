@@ -92,9 +92,9 @@ Parfois, le niveau le plus strict rejette des transactions voire provoquer des i
 C'est pourquoi Oracle munit les développeurs de la clause ***FOR UPDATE***.
 Autrement dit, le développeur déclare qu’une lecture va être suivie d’une mise à jour et le système pose un verrou fort pour celle-là, pas de verrou pour les autres et ainsi ca permet de monter le niveau de blocage uniquement quand c’est nécessaire... mais ca repose sur le facteur humain qui n'est pas assez fiable.
 
-####Demo
+#### Demo
 
-##Conclusion
+## Conclusion
 
 - Comprendre et utiliser correctement les niveaux d’isola-tion est impératif pour les applications transactionnelles
 
