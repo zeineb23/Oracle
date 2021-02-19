@@ -155,6 +155,45 @@ Autrement dit, le développeur déclare qu’une lecture va être suivie d’une
 | t23| ------ |```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|
 
 
+
+### Exemple de traitement avec "FOR UPDATE" ;
+
+```sh
+SET SERVEROUTPUT ON ;
+
+DECLARE 
+
+tmp_v_empno number (6,2);
+CURSOR cur IS SELECT EMPNO FROM EMP WHERE ENAME = 'Mohamed' FOR UPDATE of SAL;
+
+BEGIN 
+   DBMS_OUTPUT.PUT_LINE('START');
+
+   OPEN cur;   
+
+    FETCH cur INTO tmp_v_empno;
+    DBMS_OUTPUT.PUT_LINE(' Updating Employee Number  ' || tmp_v_empno );
+
+      IF cur%notfound THEN
+          tmp_v_empno := -1 ; 
+      ELSE
+        UPDATE EMP SET SAL = 6666 WHERE CURRENT OF cur ;
+        COMMIT;
+    END IF;
+
+   CLOSE cur;
+
+   DBMS_OUTPUT.PUT_LINE(' Employee Number  ' || tmp_v_empno || ' Updated successfully !!'  );
+
+END;
+/
+
+```
+
+Pour vérifier :
+```sh
+SELECT EMPNO, SAL FROM EMP WHERE ENAME = 'Mohamed' ;
+```
 ## Conclusion
 
 - Comprendre et utiliser correctement les niveaux d’isolation est impératif pour les applications transactionnelles
