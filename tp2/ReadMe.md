@@ -182,9 +182,9 @@ BEGIN
           tmp_v_empno := -1 ; 
           DBMS_OUTPUT.PUT_LINE('This Employee is currently being Updated, try again in a while');
       ELSE
-        DBMS_OUTPUT.PUT_LINE(' Updating Employee Number  ' || tmp_v_empno );
-        UPDATE EMP SET SAL = 6666 WHERE CURRENT OF cur ;
-        COMMIT;
+          DBMS_OUTPUT.PUT_LINE(' Updating Employee Number  ' || tmp_v_empno );
+          UPDATE EMP SET SAL = 6666 WHERE CURRENT OF cur ;
+          COMMIT;
     END IF;
 
    CLOSE cur;
