@@ -2,7 +2,7 @@
 
 Vous trouverez dans ce [lien](https://docs.google.com/presentation/d/1f5uyqowZ7u9QAV5YUseURFAPnu4v6_O7cnL8T1eZTIo/edit?usp=sharing) la présentation utilisée dans ce TP.
 
-###Script de démarrage
+### Script de démarrage
 
 ```
 DELETE * FROM EMP WHERE ENAME IN ('Hichem','Mohamed');
