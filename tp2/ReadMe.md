@@ -2,6 +2,15 @@
 
 Vous trouverez dans ce [lien](https://docs.google.com/presentation/d/1f5uyqowZ7u9QAV5YUseURFAPnu4v6_O7cnL8T1eZTIo/edit?usp=sharing) la présentation utilisée dans ce TP.
 
+### Script de démarrage
+
+```
+DELETE * FROM EMP WHERE ENAME IN ('Hichem','Mohamed');
+
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('1','Mohamed','PLEASE',null,to_date('17/11/81','DD/MM/RR'),'2000',null,'10');
+Insert into EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values ('2','Hichem','CRAFTSMAN',null,to_date('01/05/81','DD/MM/RR'),'2800',null,'10');
+```
+
 ## Introduction
 
 Après avoir présenté les transactions de façon générale, nous allons présenter dans ce chapitre la gestion de la conccurence entre les transactions.
@@ -31,8 +40,6 @@ Lorsque ces 2 transactions lisent en même temps le nombre de place disponible l
 Ensuite chacune va réserver un nombre de place.
 Une va réserver **2 places** et l'autre **4 places** .
 Après que ces transactions soient exécutées, le nombre de place restant est de **6** hors que ca devrait être **4 places**.
-
-#### Demo
 
 ### 2/ Lectures non répétables
 
@@ -71,8 +78,6 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
   <img width="600" src="images/5.png" alt="picture">
 </p>
 
-#### Demo
-
 ### Demo Interblocages :
 
 | Timing | Session N° 1 (User1)   | Session N° 2 (User2) |Résultat | 
@@ -82,8 +87,9 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 | t2 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
 | t3 | ```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
 | t4 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Hichem';```|La session 1 va detecter l'interblocage |
-| t5 | ------ |```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|
-| t6 | ```Commit;``` |------|Session 2: --> 1 row updated.|
+| t5 | ```Commit;``` |------|Session 2: --> 1 row updated.|
+| t6 | ------ |```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|
+
 ## Concurrence : Niveaux d'isolation des transactions
 
 Plus le niveau est permissif, plus l’exécution est fluide, plus les anomalies sont possibles.
@@ -104,7 +110,6 @@ Parfois, le niveau le plus strict rejette des transactions voire provoquer des i
 C'est pourquoi Oracle munit les développeurs de la clause ***FOR UPDATE***.
 Autrement dit, le développeur déclare qu’une lecture va être suivie d’une mise à jour et le système pose un verrou fort pour celle-là, pas de verrou pour les autres et ainsi ca permet de monter le niveau de blocage uniquement quand c’est nécessaire... mais ca repose sur le facteur humain qui n'est pas assez fiable.
 
-#### Demo
 ### Demo Niveau d'isolation  READ COMMITTED 
 
 | Timing | Session N° 1  | Session N° 2 |Résultat | 
