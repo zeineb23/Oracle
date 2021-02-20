@@ -87,7 +87,9 @@ Biensûr, lorsqu'on parle de gestion de conccurence entre plusieurs transactions
 | t2 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
 | t3 | ```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
 | t4 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Hichem';```|La session 1 va detecter l'interblocage |
-| t5 | ```Commit;``` |------|Session 2: --> 1 row updated.|
+| t5 | ```Commit;``` |------| Session 2: --> 1 row updated.|
+| t2 | ------ |```UPDATE EMP SET SAL = SAL + 1000 WHERE ENAME ='Mohamed';```|------|
+| t5 | ------| ```Commit;``` | --------|
 | t6 | ------ |```SELECT ENAME, SAL FROM EMP WHERE ENAME IN ('Mohamed','Hichem', 'Maaoui');```|------|
 
 ## Concurrence : Niveaux d'isolation des transactions
