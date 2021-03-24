@@ -9,7 +9,7 @@ Dans cette partie, nous allons détailler l'architecture de la base de données 
 ## Architecture BD Oracle 11g
 
 <p align="center">
-  <img width="650" src="images/1.jpg" alt="picture">
+  <img width="750" src="images/1.jpg" alt="picture">
 </p>
 
 
@@ -25,7 +25,7 @@ Un processus est un mécanisme dans un système d'exploitation qui peut exécute
 Un serveur de base de données Oracle possède deux types généraux de processus : les processus utilisateur et les processus Oracle.
 
 <p align="center">
-  <img width="650" src="images/2.jpg" alt="picture">
+  <img width="750" src="images/2.jpg" alt="picture">
 </p>
 
 #### Processus Utilisateur
