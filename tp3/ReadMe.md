@@ -79,3 +79,77 @@ Il conserve les enregistrements des blocs de base de données modifiés et son o
 	- Il interagit directement avec l'instance Oracle
 	- Il peut s'agir d'un serveur dédié ou partagé
 	- Il répond toujours aux demandes des utilisateurs
+	
+	#### 3/ Processus en arrière plan
+
+	- Il renforce la relation entre la structure de la mémoire et la base de données.
+	
+		-  **PMON** :
+		
+			- Prise en charge de tous les processus d'arrière-plan
+
+			- Nettoyage après l'échec d'un processus
+
+			- Retour en arrière (Rolling Back)
+
+		-  **SMON** :
+		
+			- Surveillance du système
+			- Récupération d'instance
+			- Transférer les changements dans les redologs
+			- Ouverture de la base de données pour l'accès des utilisateurs
+
+		-  **DBWR** :
+			
+			- Erreur de temps mort
+
+			- Tablespace hors ligne
+
+			- Tablespace en lecture seule
+			
+		-  **LGWR** :
+
+			- Au moment du commit
+
+			- Toutes les 3 secondes
+
+			- Intervient au moment ou Redolog Buffer a atteint un tiers de sa capacité
+			
+		- **CHKPT** :
+		
+			- Mise à jour du Control file avec les informations du point de contrôle.
+			
+## 4/ BD Physique
+La base de données est une collection de données qui contient des **Data files**, des **Control files** et des **Redolog files**.
+
+### A/ Data files 
+
+- Il s'agit d'une partie d'une base de données oracle, qui stocke les données, notamment les données utilisateur et les données d'annulation.
+
+- Son extension est ".dbf".
+
+- L'emplacement par défaut est " $ORACLE_BASE/oradata".
+
+- Pour voir l'emplacement dans la base de données, utilisez cette commande : ```Select name from V$datafile; ```
+
+### B/ Control files 
+
+ - C'est le cœur de la base de données
+
+- Il contient les informations sur les Data files, les emplacements des fichiers redo log et les informations de sauvegarde (heure de début et heure de fin).
+
+- Son extension est ".ctl".
+
+- Commande : ```Show parameter control_files ```
+
+### C/ Redo Log files 
+
+- C'est une partie d'une base de données oracle
+
+- Son but principal est de récupérer la base de données.
+
+- Son extension est ".log".
+
+- Lorsque la transaction est validée, les détails du tampon de redo log sont écrits dans un fichier redo log.
+
+- Commande : ``` select * from V$log; or Select * from V$logfile ; ```
