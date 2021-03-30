@@ -18,6 +18,78 @@ Dans cette partie, nous allons détailler l'architecture de la base de données 
 - Il s'agit d'accéder à une base de données Oracle
 - Il démarre toujours une et une seule **instance** de la base de données
 
+#### - Démo:
+- **Connectez-vous en tant que Administrateur DB**  
+
+``` sh
+connect sys/sys_password as sysdba 
+```
+
+
+- **Arréter l'instance oracle d'une façon normale:**  
+
+```sh
+shutdown normal 
+```
+
+- **Démarrer l'instance Oracle sans monter la base**  
+
+```sh
+startup nomount; 
+```
+
+- **Monter la base de données sans l'ouvrir:**  
+
+```sh
+alter database mount;
+```
+
+
+- **Fermer la base et redémarrer la en mode restrict**  
+
+```sh
+alter database dismount;
+startup restrict;
+
+```
+
+- **Démonter la base et remonter la en mode lecture seule:**  
+
+```sh
+alter database close;
+alter database open read only;
+```
+ 
+- **Arréter l'instance oracle en abondonnant les transactions en cours, et par la suite démarrer la base en réinitialisant les fichiers journaux:**  
+
+```sh
+shutdown abandon;
+startup open resetlogs;
+```
+ 
+- **Arréter l'instance oracle en abondonnant les transactions en cours, et par la suite démarrer la base en réinitialisant les fichiers journaux:**  
+
+```sh
+shutdown abandon;
+startup open resetlogs;
+```
+
+- **Arréter l'instance oracle sans invalider les transactions en cours et en bloquant les nouvelles transaction , et par la suite forcer le démarrage de la base de données :**  
+
+```sh
+shutdown transactional;
+startup force;
+```
+- **Afficher les colonnes de la vue de données de l'instance Oracle:**  
+
+```sh
+DESC v$INSTANCE;
+```
+- **Afficher les colonnes de la vue de données de la base de données:**  
+
+```sh
+DESC v$DATABASE;
+```
 ### 2/ Architecture Processus
 
 Un processus est un mécanisme dans un système d'exploitation qui peut exécuter une série d'instructions. Certains systèmes d'exploitation utilisent les termes job ou tâche. Un processus possède généralement sa propre zone de mémoire privée dans laquelle il s'exécute.
@@ -27,6 +99,7 @@ Un serveur de base de données Oracle possède deux types généraux de processu
 <p align="center">
   <img width="850" src="images/2.jpg" alt="picture">
 </p>
+
 ### 3/ Structure Mémoire
 
 La structure mémoire représente une version "vivante" d'Oracle qui n'est disponible que lorsque l'instance est en cours d'exécution. Il existe deux structures de mémoire de base sur l'instance Oracle. La première et la plus importante est appelée **System Global Area**, communément appelée **SGA**. L'autre structure de mémoire de l'instance Oracle s'appelle le **Program Global Area**, ou **PGA**. 
