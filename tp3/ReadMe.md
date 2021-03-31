@@ -108,6 +108,12 @@ La structure mémoire représente une version "vivante" d'Oracle qui n'est dispo
 
 La SGA d'Oracle est la structure de mémoire la plus importante d'Oracle.
 Elle permet de stocker plusieurs composants différents de la mémoire qui sont conçus pour exécuter des processus afin d'obtenir des données pour les requêtes des utilisateurs aussi rapidement que possible tout en maximisant le nombre d'utilisateurs simultanés qui peuvent accéder à l'instance Oracle.
+- **Afficher les colonnes de la vue de données de la SGA:**  
+
+```sh
+DESC v$SGA;
+DESC V$SGAINFO;
+```
 
 Elle est essentiellement composée de : 
 
@@ -125,7 +131,6 @@ Commande : ``` show parameter shared_pool_size ```
 		
 	Commande : ``` show parameter db_block_size =8kb is default size,
    show parameter db_cache_size```
-		
 #### - Database Buffer Cache : 	
 Il stocke les copies des blocs de données qui ont été récupérés dans les fichiers de données de la base.
 
@@ -133,6 +138,7 @@ Commande : ``` show parameter log_file ```
 
 #### - Redo log Buffer Cache :
 Il conserve les enregistrements des blocs de base de données modifiés et son objectif principal est la récupération.
+Commande : ```	SHOW PARAMETER LOG_BUFFER ;```
 #### B/ Program Global Area
 
 - Réserver de la mémoire pour chaque processus utilisateur souhaitant se connecter à la BD Oracle
@@ -191,6 +197,11 @@ Il conserve les enregistrements des blocs de base de données modifiés et son o
 		- **CHKPT** :
 		
 			- Mise à jour du Control file avec les informations du point de contrôle.
+- **Afficher les noms des processus arrière plan de l'instance BD:**  
+
+```sh
+select pname from v$process
+```
 			
 ## 4/ BD Physique
 La base de données est une collection de données qui contient des **Data files**, des **Control files** et des **Redolog files**.
@@ -226,3 +237,98 @@ La base de données est une collection de données qui contient des **Data files
 - Lorsque la transaction est validée, les détails du tampon de redo log sont écrits dans un fichier redo log.
 
 - Commande : ``` select * from V$log; or Select * from V$logfile ; ```
+
+## 4/ Les espaces de tables et les schèmas:
+
+- **Créer un espace de tables permanent avec ayant le nom 'tbs_perm_001' avec un fichier de données nommé tbs_perm_001.dat, dont la taille est de '20 MB' et metter le en ligne :**  
+
+```sql
+CREATE TABLESPACE tbs_perm_001
+  DATAFILE 'tbs_perm_001.dat' 
+    SIZE 20M
+  ONLINE;
+```
+
+- **Créer un espace de tables permanent avec ayant le nom 'tbs_perm_02' avec un fichier de données nommé tbs_perm_02.dat, dont la taille initiale est de '10 MB' extensible automatiquement chaque augmentation de 10MB avec une limite de 200MB**  
+
+```sql
+CREATE TABLESPACE tbs_perm_02
+  DATAFILE 'tbs_perm_02.dat' 
+    SIZE 10M
+    REUSE
+    AUTOEXTEND ON NEXT 10M MAXSIZE 200M;
+```
+
+- **Créer un espace de tables de type "BIGFILE TABLESPACE" permanent avec ayant le nom 'tbs_perm_01' avec un fichier de données nommé tbs_perm_01.dat, dont la taille initiale est de '10 MB' extensible automatiquement et illimitée, et metter le en ligne :**  
+
+```sql
+CREATE BIGFILE TABLESPACE tbs_perm_01
+  DATAFILE 'tbs_perm_01.dat'
+    SIZE 10M
+    AUTOEXTEND ON;
+```
+
+- **Créer un espace de tables temporaire avec ayant le nom 'tbs_tmp_01' avec un fichier de données temporaire nommé tbs_tmp_01.dbf, dont la taille initiale est de '5 MB' extensible automatiquement :**  
+
+```sql
+CREATE TEMPORARY TABLESPACE tbs_tmp_01
+  TEMPFILE 'tbs_tmp_01.dbf'
+    SIZE 5M
+    AUTOEXTEND ON;
+```
+
+- **Afficher les noms des espaces de tables de la base de données :**  
+
+```sql
+SELECT TABLESPACE_NAME
+FROM DBA_TABLESPACES ;
+```
+- **Créér un nouveau utilisateur nommé "tsuser1" ayant un mot de passe "tsuser1" dont l'espace de tables par défaut est "tbs_perm_01" et l'espace de table temporaire est "tbs_tmp_01" avec un quota mémoire de 50M max sur l'espace de tables permanent "tbs_perm_01" :**  
+
+```sql
+CREATE USER tsuser1
+  IDENTIFIED BY tsuser1
+  DEFAULT TABLESPACE tbs_perm_01
+  TEMPORARY TABLESPACE tbs_tmp_01
+  QUOTA 50M on tbs_perm_01;
+```
+- **Accorder au user "tsuser1" tous les privilèges avec le role Admin :**  
+
+```sql
+GRANT ALL PRIVILEGES TO tsuser1 with admin option ;
+flush privileges;
+```
+- **Ouvrer une session oracle avec l'utilisateur "tsuser1":**  
+
+```sql
+connect tsuser1/tsuser1 
+```
+- **Afficher le schéma courrant de la session, changer le schema de la session vers le schema par défaut du user "tsuser1" :**  
+
+```sql
+select sys_context( 'userenv', 'current_schema' ) from dual;
+Alter session set current_schema=tsuser1;
+```
+- **Vérifier que le schéma  courrant de la session est bien le schema par défaut du user "tsuser1, créer par la suite une nouvelle table avec une seule colonne number en tant que clè primaire":**  
+
+```sql
+select sys_context( 'userenv', 'current_schema' ) from dual;
+create table test1( pkey number primary key enable )
+```
+- **Afficher toutes les lignes de la table crée et insérer par la suite une nouvelle ligne dans cette table:**  
+
+```sql
+select * from test1 ;
+insert into test1 values (1) ;
+```
+- **Supprimer l'espace de tables permanent ayant le nom 'tbs_perm_01' avec ses données :**  
+
+```sql
+DROP TABLESPACE tbs_perm_01 INCLUDING CONTENTS ;
+```
+
+- **Supprimer l'espace de tables temporaire ayant le nom 'tbs_tmp_01' avec ses données :**  
+
+```sql
+DROP TABLESPACE tbs_tmp_01 INCLUDING CONTENTS ;
+```
