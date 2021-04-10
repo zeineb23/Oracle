@@ -245,7 +245,7 @@ La base de données est une collection de données qui contient des **Data files
 - **Créer un espace de tables permanent avec ayant le nom 'tbs_perm_001' avec un fichier de données nommé tbs_perm_001.dat, dont la taille est de '20 MB' et metter le en ligne :**  
 
 ```sql
-CREATE TABLESPACE tbs_perm_001
+CREATE TABLESPACE tbs_perm_01
   DATAFILE 'tbs_perm_001.dat' 
     SIZE 20M
   ONLINE;
