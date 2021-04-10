@@ -246,7 +246,7 @@ La base de données est une collection de données qui contient des **Data files
 
 ```sql
 CREATE TABLESPACE tbs_perm_01
-  DATAFILE 'tbs_perm_001.dat' 
+  DATAFILE 'tbs_perm_01.dat' 
     SIZE 20M
   ONLINE;
 ```
