@@ -99,6 +99,7 @@ Lors de la modification d'un utilisateur, il est possible de lui affecter : un m
  La suppression d'un utilisateur entraîne la suppression des objets de son schéma (tables, vues, séquences, synonymes, indexes ... ) . Le privilège drop user est requis.
  
  ```DROP USER ETU1_33;``` -> suppression d'un utilisateur lié à un schéma vide
+ 
  ```DROP USER ETU1_33 CASCADE; ```
  
  - CASCADE : supprime  les objets du schéma de l'utilisateur et les contraintes d'intégrité de référence (et vide la corbeille).
