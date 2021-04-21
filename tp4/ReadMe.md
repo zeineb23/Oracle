@@ -105,7 +105,7 @@ Lors de la modification d'un utilisateur, il est possible de lui affecter : un m
  - CASCADE : supprime  les objets du schéma de l'utilisateur et les contraintes d'intégrité de référence (et vide la corbeille).
  Rq : les rôles créés par l'utilisateur ne sont pas supprimés.
  
- 
+**La portée des privilèges :** 
 
 ``` _________________________________________________
 Object privilege | Table   | View    | Sequence  |
@@ -125,10 +125,10 @@ _________________________________________________
 ```
 
 
-**Pour confirmer/lister les privilèges attribuées sur chaque Type d'Objet par role :**
+**Pour confirmer/lister les privilèges attribuées sur chaque Type d'Objet par rôle :**
 ```
 __________________________________________________________________________________________________________________________
-Vue de privs dans le dictionnaire de données Oralce |     Usage/Displayed Data
+Vue de privs dans le dictionnaire de données Oracle |     Usage/Displayed Data
 ---------------------------------------------------------------------------------------------------------------------------
 SELECT * From ROLE_SYS_PRIVS  ;                     | -->  System privileges granted to roles                              |
 ---------------------------------------------------------------------------------------------------------------------------
