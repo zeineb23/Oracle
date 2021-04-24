@@ -253,29 +253,6 @@ ________________________________________________________________________________
  ```sql
 ---
 ```
-   - **Limiter l'accès pour les testeurs de sorte qu'ils n'accèdent qu'aux noms des employés dans la table "EMP":** 
-  
-
-```sql
----
-```
-
- ```sql
----
-```
-
- 
-  - **Changer le rôle dédié aux developpeurs de manière à les autoriser de passer le long des privilèges qu'ils ont reçus:** 
-  
-
-```sql
----
-```
-
- ```sql
----
-```
-
  
  
  
