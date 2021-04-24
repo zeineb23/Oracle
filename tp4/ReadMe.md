@@ -292,7 +292,7 @@ ________________________________________________________________________________
 
 
 
-**Créer un profile de ressources dédié à l'équipe des développeurs avec les limitations suivantes:**
+**Créer un profile de ressources dédié à l'équipe de test avec les limitations suivantes:**
   * ***Nombre maximal de sessions permises par utilisateur:*** **5**
   * ***Nombre maximal de CPU par session:*** **illimité**  
   * ***Nombre maximal de CPU par appel à la base :*** **3000**
@@ -306,7 +306,7 @@ ________________________________________________________________________________
 ---
 ```
 
-**Créer un profile de ressources dédié à l'équipe de test avec les limitations suivantes:**
+**Créer un profile de ressources dédié à l'équipe devsecops avec les limitations suivantes:**
   * ***Nombre maximal de sessions permises par utilisateur:*** **illimité**
   * ***Nombre maximal de CPU par session:*** **illimité**  
   * ***Nombre maximal de CPU par appel à la base :*** **3000**
